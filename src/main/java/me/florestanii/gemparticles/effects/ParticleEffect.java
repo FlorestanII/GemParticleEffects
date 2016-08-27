@@ -21,7 +21,7 @@ public abstract class ParticleEffect extends Buyable{
 	
 	public abstract void loopOnPlayer(Player player, int periode);
 	
-	public abstract void stopLoopEffect(Player player);
+	public abstract void stopEffect(Player player);
 	
 	public boolean buyEffect(Player player) {
 		if (hasBoughtEffect(player)) {
