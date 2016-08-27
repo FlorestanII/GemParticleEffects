@@ -1,0 +1,9 @@
+name: GemParticleEffects
+version: VERSION
+
+main: me.florestanii.gemparticles.GemParticleEffects
+
+commands:
+  particles:
+    usage: /<command>
+    description: GemParticleEffects main command
