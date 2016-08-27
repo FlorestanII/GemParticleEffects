@@ -2,6 +2,8 @@ package me.florestanii.gemparticles;
 
 import java.util.UUID;
 
+import me.mickyjou.plugins.gems.api.GemProvider;
+
 import org.bukkit.OfflinePlayer;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,6 +16,7 @@ public class GemParticleEffects extends JavaPlugin{
 	private static GemParticleEffects instance;
 	private ViewManager viewManager;
 	private PlayerDataStoreService storage;
+	private GemProvider gemApi;
 	
 	@Override
 	public void onLoad() {
@@ -31,6 +34,8 @@ public class GemParticleEffects extends JavaPlugin{
 		this.viewManager = new ViewManager(this);
 		
 		this.storage = getServer().getServicesManager().getRegistration(PlayerDataStoreService.class).getProvider();
+		
+		this.gemApi = getServer().getServicesManager().getRegistration(GemProvider.class).getProvider();
 		
 		super.onEnable();
 	}
@@ -50,6 +55,10 @@ public class GemParticleEffects extends JavaPlugin{
 	
 	public PlayerDataStoreService getStorage() {
 		return storage;
+	}
+	
+	public GemProvider getGemApi() {
+		return gemApi;
 	}
 	
 	public PlayerDataStore getPlayerStorage(OfflinePlayer player) {

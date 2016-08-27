@@ -19,7 +19,7 @@ public class ParticlesCommand implements CommandExecutor{
 		
 		Player player = (Player) sender;
 		
-		GemParticleEffects.getPlugin().getViewManager().showView(player, new ParticleMenu());
+		GemParticleEffects.getPlugin().getViewManager().showView(player, new ParticleMenu(player));
 		
 		return false;
 	}
