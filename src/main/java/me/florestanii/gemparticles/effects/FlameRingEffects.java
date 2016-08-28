@@ -87,9 +87,9 @@ public class FlameRingEffects extends ParticleEffect{
 				
 				Location loc = player.getLocation();
 				
-				double x = 2*Math.cos(t);
-				double y = 1.62 + 0.5*Math.sin(t);
-				double z = 2*Math.cos(t);
+				double x = 0.9*Math.cos(t);
+				double y = 1.12 + 0.5*Math.sin(t/4);
+				double z = 0.9*Math.sin(t);
 				
 				loc.add(x, y, z);
 				

@@ -27,7 +27,7 @@ public class ParticleMenu extends SinglePageView{
 	}
 	
 	public GuiElement createGemIcon() {
-		return new Button(Material.EMERALD, ChatColor.GREEN + "You have" + ChatColor.GOLD + GemParticleEffects.getPlugin().getGemApi().getGems(player) + ChatColor.GREEN + " Gems.");
+		return new Button(Material.EMERALD, ChatColor.GREEN + "You have " + ChatColor.GOLD + GemParticleEffects.getPlugin().getGemApi().getGems(player) + ChatColor.GREEN + " Gems.");
 	}
 	
 	public GuiElement createFlameEffect() {
@@ -51,6 +51,7 @@ public class ParticleMenu extends SinglePageView{
 		} else {
 			
 			Button b = new Button(Material.BLAZE_POWDER, "Click to buy " + flameEffect.getTitle() + " for " + flameEffect.getCost() + " Gems");
+			b.setIcon(Material.INK_SACK, (byte)8);
 			
 			b.setOnClick(new ClickListener() {
 				
@@ -60,7 +61,7 @@ public class ParticleMenu extends SinglePageView{
 					Player player = (Player) event.getWhoClicked();
 					
 					if (flameEffect.buyEffect(player)) {
-						b.setIcon(Material.INK_SACK, (byte)8);
+						b.setIcon(Material.BLAZE_POWDER);
 						b.setTitle(flameEffect.getTitle());
 						flameEffect.loopOnPlayer(player, -1);
 					}
