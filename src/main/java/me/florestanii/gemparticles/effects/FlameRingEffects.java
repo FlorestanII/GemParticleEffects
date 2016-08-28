@@ -38,6 +38,8 @@ public class FlameRingEffects extends ParticleEffect{
 
 	@Override
 	public void playOnPlayer(Player player) {
+
+		playerEffects.put(player, this);
 		
 		BukkitRunnable br = new BukkitRunnable() {
 			
@@ -75,7 +77,9 @@ public class FlameRingEffects extends ParticleEffect{
 
 	@Override
 	public void loopOnPlayer(Player player, int periode) {
-
+		
+		playerEffects.put(player, this);
+		
 		BukkitRunnable br = new BukkitRunnable() {
 			
 			double t = 0;

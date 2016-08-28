@@ -1,5 +1,8 @@
 package me.florestanii.gemparticles.effects;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import me.florestanii.gemparticles.GemParticleEffects;
 import net.md_5.bungee.api.ChatColor;
 
@@ -7,6 +10,8 @@ import org.bukkit.entity.Player;
 
 public abstract class ParticleEffect extends Buyable{
 
+	protected static Map<Player, ParticleEffect> playerEffects = new HashMap<Player, ParticleEffect>();
+	
 	private final String name;
 	
 	private final String title;
@@ -57,6 +62,13 @@ public abstract class ParticleEffect extends Buyable{
 	public String getTitle() {
 		return title;
 	}
+	
+	public static ParticleEffect getCurrentEffect(Player p) {
+		return playerEffects.get(p);
+	}
 
-
+	public static void setCurrentEffect(Player p, ParticleEffect effect) {
+		playerEffects.put(p, effect);
+	}
+	
 }

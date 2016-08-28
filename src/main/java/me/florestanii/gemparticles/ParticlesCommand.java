@@ -21,7 +21,7 @@ public class ParticlesCommand implements CommandExecutor{
 		
 		GemParticleEffects.getPlugin().getViewManager().showView(player, new ParticleMenu(player));
 		
-		return false;
+		return true;
 	}
 
 }

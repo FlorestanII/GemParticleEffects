@@ -1,6 +1,7 @@
 package me.florestanii.gemparticles;
 
 import me.florestanii.gemparticles.effects.FlameRingEffects;
+import me.florestanii.gemparticles.effects.ParticleEffect;
 import net.md_5.bungee.api.ChatColor;
 
 import org.bukkit.Material;
@@ -42,7 +43,12 @@ public class ParticleMenu extends SinglePageView{
 					
 					Player player = (Player) event.getWhoClicked();
 					
-					flameEffect.loopOnPlayer(player, -1);
+					if (ParticleEffect.getCurrentEffect(player) == null) {
+						flameEffect.loopOnPlayer(player, -1);
+					} else {
+						flameEffect.stopEffect(player);
+						ParticleEffect.setCurrentEffect(player, null);
+					}
 					
 				}
 			});
