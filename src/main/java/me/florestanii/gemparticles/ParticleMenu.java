@@ -3,6 +3,7 @@ package me.florestanii.gemparticles;
 import me.florestanii.gemparticles.effects.FlameRingEffects;
 import me.florestanii.gemparticles.effects.FrostLordEffect;
 import me.florestanii.gemparticles.effects.ParticleEffect;
+import me.florestanii.gemparticles.effects.RainCloudEffect;
 import net.md_5.bungee.api.ChatColor;
 
 import org.bukkit.Material;
@@ -20,6 +21,7 @@ public class ParticleMenu extends SinglePageView{
 	
 	public static final FlameRingEffects flameEffect = new FlameRingEffects();
 	public static final FrostLordEffect frostLordEffect = new FrostLordEffect();
+	public static final RainCloudEffect rainCloudEffect = new RainCloudEffect();
 	
 	public ParticleMenu(Player player) {
 		super("§6§l★ §4§lParticle Menu §6§l ★", 54);
@@ -28,6 +30,7 @@ public class ParticleMenu extends SinglePageView{
 		insertElement(53, createGemIcon());
 		insertElement(12, createFlameEffect());
 		insertElement(14, createFrostLordEffect());
+		insertElement(21, createRainCloudEffect());
 	}
 	
 	public GuiElement createGemIcon() {
@@ -84,6 +87,57 @@ public class ParticleMenu extends SinglePageView{
 		
 	}
 
+	public GuiElement createRainCloudEffect() {
+		
+		if (rainCloudEffect.hasBoughtEffect(player)) {
+			Button b = new Button(Material.INK_SACK, rainCloudEffect.getTitle());
+			b.setIcon(Material.INK_SACK, (byte)2);
+			b.setOnClick(new ClickListener() {
+				
+				@Override
+				public void clicked(InventoryClickEvent event) {
+					
+					Player player = (Player) event.getWhoClicked();
+					
+					if (ParticleEffect.getCurrentEffect(player) == null) {
+						rainCloudEffect.loopOnPlayer(player, -1);
+					} else {
+						rainCloudEffect.stopEffect(player);
+						ParticleEffect.setCurrentEffect(player, null);
+					}
+					
+				}
+			});
+			
+			return b;
+		} else {
+			
+			Button b = new Button(Material.INK_SACK, "Click to buy " + rainCloudEffect.getTitle() + " for " + rainCloudEffect.getCost() + " Gems for one hour.");
+			b.setIcon(Material.INK_SACK, (byte)2);
+			b.setIcon(Material.INK_SACK, (byte)8);
+			
+			b.setOnClick(new ClickListener() {
+				
+				@Override
+				public void clicked(InventoryClickEvent event) {
+					
+					Player player = (Player) event.getWhoClicked();
+					
+					if (rainCloudEffect.buyEffect(player)) {
+						b.setIcon(Material.INK_SACK, (byte)2);
+						b.setTitle(rainCloudEffect.getTitle());
+						rainCloudEffect.loopOnPlayer(player, -1);
+					}
+					
+				}
+			});
+			
+			return b;
+			
+		}
+		
+	}
+	
 	public GuiElement createFrostLordEffect() {
 		
 		if (frostLordEffect.hasBoughtEffect(player)) {
