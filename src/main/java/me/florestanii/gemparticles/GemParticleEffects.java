@@ -1,22 +1,23 @@
 package me.florestanii.gemparticles;
 
-import java.util.UUID;
-
+import me.florestanii.gemparticles.effects.FlameRing;
+import me.florestanii.gemparticles.effects.FrostLord;
+import me.florestanii.gemparticles.effects.RainCloud;
 import me.mickyjou.plugins.gems.api.GemProvider;
+import me.mickyjou.plugins.gems.gemextras.GemExtras;
+import me.mickyjou.plugins.gems.gemextras.abilitymanager.AbilityManager;
 
-import org.bukkit.OfflinePlayer;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import de.craften.plugins.mcguilib.ViewManager;
-import de.craften.plugins.playerdatastore.api.PlayerDataStore;
-import de.craften.plugins.playerdatastore.api.PlayerDataStoreService;
 
 public class GemParticleEffects extends JavaPlugin{
 
 	private static GemParticleEffects instance;
 	private ViewManager viewManager;
-	private PlayerDataStoreService storage;
 	private GemProvider gemApi;
+	
+	private AbilityManager abilityManager;
 	
 	@Override
 	public void onLoad() {
@@ -32,10 +33,15 @@ public class GemParticleEffects extends JavaPlugin{
 		getCommand("particles").setExecutor(new ParticlesCommand());
 		
 		this.viewManager = new ViewManager(this);
-		
-		this.storage = getServer().getServicesManager().getRegistration(PlayerDataStoreService.class).getProvider();
-		
+				
 		this.gemApi = getServer().getServicesManager().getRegistration(GemProvider.class).getProvider();
+		
+		this.abilityManager = getPlugin(GemExtras.class).getAbilityManager();
+		
+		this.abilityManager.registerAbility(new RainCloud());
+		this.abilityManager.registerAbility(new FlameRing());
+		this.abilityManager.registerAbility(new FrostLord());
+		
 		
 		super.onEnable();
 	}
@@ -53,19 +59,11 @@ public class GemParticleEffects extends JavaPlugin{
 		return viewManager;
 	}
 	
-	public PlayerDataStoreService getStorage() {
-		return storage;
-	}
-	
 	public GemProvider getGemApi() {
 		return gemApi;
 	}
-	
-	public PlayerDataStore getPlayerStorage(OfflinePlayer player) {
-		return storage.getStore(player);
-	}
-	
-	public PlayerDataStore getPlayerStorage(UUID uuid) {
-		return storage.getStore(uuid);
+
+	public AbilityManager getAbilityManager() {
+		return abilityManager;
 	}
 }

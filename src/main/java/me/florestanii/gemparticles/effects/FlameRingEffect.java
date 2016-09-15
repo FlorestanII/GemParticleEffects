@@ -1,5 +1,6 @@
 package me.florestanii.gemparticles.effects;
 
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,11 +15,11 @@ import org.bukkit.scheduler.BukkitRunnable;
 import me.florestanii.gemparticles.GemParticleEffects;
 import net.md_5.bungee.api.ChatColor;
 
-public class FlameRingEffects extends ParticleEffect{
+public class FlameRingEffect extends ParticleEffect {
 
 	private final Map<Player, Integer> schedulers;
 	
-	public FlameRingEffects() {
+	public FlameRingEffect() {
 		super("flamerings", ChatColor.GOLD + "Flame Rings", 1000);
 		
 		this.schedulers = new HashMap<Player, Integer>();
@@ -124,5 +125,15 @@ public class FlameRingEffects extends ParticleEffect{
 			
 		}
 	}
-	
+
+	@Override
+	public void giveToPlayer(Player player) {
+		GemParticleEffects.getPlugin().getAbilityManager().giveAbilityTo(FlameRing.class, player, Duration.ofHours(1));		
+	}
+
+	@Override
+	public boolean hasEffect(Player player) {
+		return GemParticleEffects.getPlugin().getAbilityManager().hasAbility(FlameRing.class, player);
+	}
+
 }

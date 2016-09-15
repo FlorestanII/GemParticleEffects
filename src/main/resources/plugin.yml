@@ -3,6 +3,8 @@ version: VERSION
 
 main: me.florestanii.gemparticles.GemParticleEffects
 
+depend: [GemExtras]
+
 commands:
   particles:
     usage: /<command>

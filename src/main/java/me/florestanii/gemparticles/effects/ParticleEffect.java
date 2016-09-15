@@ -8,7 +8,7 @@ import net.md_5.bungee.api.ChatColor;
 
 import org.bukkit.entity.Player;
 
-public abstract class ParticleEffect extends Buyable{
+public abstract class ParticleEffect {
 
 	protected static Map<Player, ParticleEffect> playerEffects = new HashMap<Player, ParticleEffect>();
 	
@@ -16,8 +16,10 @@ public abstract class ParticleEffect extends Buyable{
 	
 	private final String title;
 		
+	protected int cost;
+	
 	public ParticleEffect(String name, String title, int cost) {
-		super(cost);
+		this.cost = cost;
 		this.name = name;
 		this.title = title;
 	}
@@ -29,13 +31,13 @@ public abstract class ParticleEffect extends Buyable{
 	public abstract void stopEffect(Player player);
 	
 	public boolean buyEffect(Player player) {
-		if (hasBoughtEffect(player)) {
+		if (hasEffect(player)) {
 			player.sendMessage(ChatColor.DARK_RED + "You have this effect already!");
 			return false;
 		}
 		
 		if (GemParticleEffects.getPlugin().getGemApi().removeGems(player, cost)) {
-			GemParticleEffects.getPlugin().getPlayerStorage(player).put("gemparticleeffects." + name + ".bought", "true");
+			giveToPlayer(player);
 			player.sendMessage(ChatColor.GREEN + "You bought " + title + ChatColor.GREEN + " for " + ChatColor.GOLD + cost + ChatColor.GREEN + " Gems");
 			return true;
 		} else {
@@ -45,15 +47,9 @@ public abstract class ParticleEffect extends Buyable{
 		
 	}
 	
-	public boolean hasBoughtEffect(Player player) {
-		String result = GemParticleEffects.getPlugin().getPlayerStorage(player).get("gemparticleeffects." + name + ".bought");
-		
-		try {
-			return Boolean.parseBoolean(result);
-		} catch (Exception e) {
-			return false;
-		}
-	}
+	public abstract void giveToPlayer(Player player);
+	
+	public abstract boolean hasEffect(Player player);
 	
 	public String getName() {
 		return name;
@@ -70,5 +66,13 @@ public abstract class ParticleEffect extends Buyable{
 	public static void setCurrentEffect(Player p, ParticleEffect effect) {
 		playerEffects.put(p, effect);
 	}
+
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
 	
+	public int getCost() {
+		return cost;
+	}
+
 }

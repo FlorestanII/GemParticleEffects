@@ -1,6 +1,6 @@
 package me.florestanii.gemparticles;
 
-import me.florestanii.gemparticles.effects.FlameRingEffects;
+import me.florestanii.gemparticles.effects.FlameRingEffect;
 import me.florestanii.gemparticles.effects.FrostLordEffect;
 import me.florestanii.gemparticles.effects.ParticleEffect;
 import me.florestanii.gemparticles.effects.RainCloudEffect;
@@ -19,7 +19,7 @@ public class ParticleMenu extends SinglePageView{
 
 	private final Player player;
 	
-	public static final FlameRingEffects flameEffect = new FlameRingEffects();
+	public static final FlameRingEffect flameEffect = new FlameRingEffect();
 	public static final FrostLordEffect frostLordEffect = new FrostLordEffect();
 	public static final RainCloudEffect rainCloudEffect = new RainCloudEffect();
 	
@@ -39,7 +39,7 @@ public class ParticleMenu extends SinglePageView{
 	
 	public GuiElement createFlameEffect() {
 		
-		if (flameEffect.hasBoughtEffect(player)) {
+		if (flameEffect.hasEffect(player)) {
 			Button b = new Button(Material.BLAZE_POWDER, flameEffect.getTitle());
 			
 			b.setOnClick(new ClickListener() {
@@ -89,7 +89,7 @@ public class ParticleMenu extends SinglePageView{
 
 	public GuiElement createRainCloudEffect() {
 		
-		if (rainCloudEffect.hasBoughtEffect(player)) {
+		if (rainCloudEffect.hasEffect(player)) {
 			Button b = new Button(Material.INK_SACK, rainCloudEffect.getTitle());
 			b.setIcon(Material.INK_SACK, (byte)2);
 			b.setOnClick(new ClickListener() {
@@ -140,7 +140,7 @@ public class ParticleMenu extends SinglePageView{
 	
 	public GuiElement createFrostLordEffect() {
 		
-		if (frostLordEffect.hasBoughtEffect(player)) {
+		if (frostLordEffect.hasEffect(player)) {
 			Button b = new Button(Material.SNOW_BALL, frostLordEffect.getTitle());
 			
 			b.setOnClick(new ClickListener() {

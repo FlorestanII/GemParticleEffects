@@ -1,5 +1,6 @@
 package me.florestanii.gemparticles.effects;
 
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,7 +15,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
-public class RainCloudEffect extends ParticleEffect{
+public class RainCloudEffect extends ParticleEffect {
 	private final Map<Player, Integer> schedulers;
 	
 	public RainCloudEffect() {
@@ -163,5 +164,15 @@ public class RainCloudEffect extends ParticleEffect{
 			
 		}
 	}
-	
+
+	@Override
+	public void giveToPlayer(Player player) {
+		GemParticleEffects.getPlugin().getAbilityManager().giveAbilityTo(RainCloud.class, player, Duration.ofHours(1));
+	}
+
+	@Override
+	public boolean hasEffect(Player player) {
+		return GemParticleEffects.getPlugin().getAbilityManager().hasAbility(RainCloud.class, player);
+	}
+
 }
