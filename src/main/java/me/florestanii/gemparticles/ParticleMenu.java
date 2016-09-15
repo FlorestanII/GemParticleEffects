@@ -91,7 +91,7 @@ public class ParticleMenu extends SinglePageView{
 		
 		if (rainCloudEffect.hasEffect(player)) {
 			Button b = new Button(Material.INK_SACK, rainCloudEffect.getTitle());
-			b.setIcon(Material.INK_SACK, (byte)2);
+			b.setIcon(Material.INK_SACK, (byte)4);
 			b.setOnClick(new ClickListener() {
 				
 				@Override
@@ -113,7 +113,7 @@ public class ParticleMenu extends SinglePageView{
 		} else {
 			
 			Button b = new Button(Material.INK_SACK, "Click to buy " + rainCloudEffect.getTitle() + " for " + rainCloudEffect.getCost() + " Gems for one hour.");
-			b.setIcon(Material.INK_SACK, (byte)2);
+			b.setIcon(Material.INK_SACK, (byte)4);
 			b.setIcon(Material.INK_SACK, (byte)8);
 			
 			b.setOnClick(new ClickListener() {
@@ -124,7 +124,7 @@ public class ParticleMenu extends SinglePageView{
 					Player player = (Player) event.getWhoClicked();
 					
 					if (rainCloudEffect.buyEffect(player)) {
-						b.setIcon(Material.INK_SACK, (byte)2);
+						b.setIcon(Material.INK_SACK, (byte)4);
 						b.setTitle(rainCloudEffect.getTitle());
 						rainCloudEffect.loopOnPlayer(player, -1);
 					}
