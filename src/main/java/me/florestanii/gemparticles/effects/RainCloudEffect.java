@@ -18,7 +18,7 @@ public class RainCloudEffect extends ParticleEffect {
 	private static final Map<Player, Integer> schedulers = new HashMap<Player, Integer>();
 	
 	public RainCloudEffect() {
-		super("raincloud", ChatColor.AQUA + "Rain Cloud", 1000);
+		super("raincloud", ChatColor.AQUA + "Rain Cloud", 5);
 				
 		GemParticleEffects.getPlugin().getServer().getPluginManager().registerEvents(new Listener() {
 			

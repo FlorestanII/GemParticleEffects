@@ -19,7 +19,7 @@ public class FlameRingEffect extends ParticleEffect {
 	private static final Map<Player, Integer> schedulers = new HashMap<Player, Integer>();
 	
 	public FlameRingEffect() {
-		super("flamerings", ChatColor.GOLD + "Flame Rings", 1000);
+		super("flamerings", ChatColor.GOLD + "Flame Rings", 5);
 				
 		GemParticleEffects.getPlugin().getServer().getPluginManager().registerEvents(new Listener() {
 			

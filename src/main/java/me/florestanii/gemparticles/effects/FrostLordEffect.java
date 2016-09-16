@@ -19,7 +19,7 @@ public class FrostLordEffect extends ParticleEffect {
 	private static final Map<Player, Integer> schedulers = new HashMap<Player, Integer>();
 	
 	public FrostLordEffect() {
-		super("frostlord", ChatColor.WHITE + "Frost Lord", 1000);
+		super("frostlord", ChatColor.WHITE + "Frost Lord", 5);
 				
 		GemParticleEffects.getPlugin().getServer().getPluginManager().registerEvents(new Listener() {
 			
