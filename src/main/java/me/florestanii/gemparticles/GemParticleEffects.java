@@ -1,8 +1,8 @@
 package me.florestanii.gemparticles;
 
-import me.florestanii.gemparticles.effects.FlameRing;
-import me.florestanii.gemparticles.effects.FrostLord;
-import me.florestanii.gemparticles.effects.RainCloud;
+import me.florestanii.gemparticles.effects.FlameRingEffect;
+import me.florestanii.gemparticles.effects.FrostLordEffect;
+import me.florestanii.gemparticles.effects.RainCloudEffect;
 import me.mickyjou.plugins.gems.api.GemProvider;
 import me.mickyjou.plugins.gems.gemextras.GemExtras;
 import me.mickyjou.plugins.gems.gemextras.abilitymanager.AbilityManager;
@@ -38,10 +38,9 @@ public class GemParticleEffects extends JavaPlugin{
 		
 		this.abilityManager = getPlugin(GemExtras.class).getAbilityManager();
 		
-		this.abilityManager.registerAbility(new RainCloud());
-		this.abilityManager.registerAbility(new FlameRing());
-		this.abilityManager.registerAbility(new FrostLord());
-		
+		this.abilityManager.registerAbility(new RainCloudEffect());
+		this.abilityManager.registerAbility(new FlameRingEffect());
+		this.abilityManager.registerAbility(new FrostLordEffect());
 		
 		super.onEnable();
 	}

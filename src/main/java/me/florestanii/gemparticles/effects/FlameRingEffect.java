@@ -17,13 +17,11 @@ import net.md_5.bungee.api.ChatColor;
 
 public class FlameRingEffect extends ParticleEffect {
 
-	private final Map<Player, Integer> schedulers;
+	private static final Map<Player, Integer> schedulers = new HashMap<Player, Integer>();
 	
 	public FlameRingEffect() {
 		super("flamerings", ChatColor.GOLD + "Flame Rings", 1000);
-		
-		this.schedulers = new HashMap<Player, Integer>();
-		
+				
 		GemParticleEffects.getPlugin().getServer().getPluginManager().registerEvents(new Listener() {
 			
 			@EventHandler
@@ -128,12 +126,12 @@ public class FlameRingEffect extends ParticleEffect {
 
 	@Override
 	public void giveToPlayer(Player player) {
-		GemParticleEffects.getPlugin().getAbilityManager().giveAbilityTo(FlameRing.class, player, Duration.ofHours(1));		
+		GemParticleEffects.getPlugin().getAbilityManager().giveAbilityTo(FlameRingEffect.class, player, Duration.ofHours(1));		
 	}
 
 	@Override
 	public boolean hasEffect(Player player) {
-		return GemParticleEffects.getPlugin().getAbilityManager().hasAbility(FlameRing.class, player);
+		return GemParticleEffects.getPlugin().getAbilityManager().hasAbility(FlameRingEffect.class, player);
 	}
 
 }

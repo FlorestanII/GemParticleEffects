@@ -17,13 +17,11 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class FrostLordEffect extends ParticleEffect {
 	
-	private final Map<Player, Integer> schedulers;
+	private static final Map<Player, Integer> schedulers = new HashMap<Player, Integer>();
 	
 	public FrostLordEffect() {
 		super("frostlord", ChatColor.WHITE + "Frost Lord", 1000);
-		
-		this.schedulers = new HashMap<Player, Integer>();
-		
+				
 		GemParticleEffects.getPlugin().getServer().getPluginManager().registerEvents(new Listener() {
 			
 			@EventHandler
@@ -138,14 +136,14 @@ public class FrostLordEffect extends ParticleEffect {
 
 	@Override
 	public void giveToPlayer(Player player) {
-		GemParticleEffects.getPlugin().getAbilityManager().giveAbilityTo(FrostLord.class, player, Duration.ofHours(1));		
+		GemParticleEffects.getPlugin().getAbilityManager().giveAbilityTo(FrostLordEffect.class, player, Duration.ofHours(1));		
 	}
 
 
 
 	@Override
 	public boolean hasEffect(Player player) {
-		return GemParticleEffects.getPlugin().getAbilityManager().hasAbility(FrostLord.class, player);
+		return GemParticleEffects.getPlugin().getAbilityManager().hasAbility(FrostLordEffect.class, player);
 	}
 
 }

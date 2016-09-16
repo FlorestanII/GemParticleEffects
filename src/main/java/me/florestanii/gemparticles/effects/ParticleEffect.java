@@ -4,11 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import me.florestanii.gemparticles.GemParticleEffects;
+import me.mickyjou.plugins.gems.gemextras.abilitymanager.Ability;
 import net.md_5.bungee.api.ChatColor;
 
 import org.bukkit.entity.Player;
 
-public abstract class ParticleEffect {
+public abstract class ParticleEffect implements Ability{
 
 	protected static Map<Player, ParticleEffect> playerEffects = new HashMap<Player, ParticleEffect>();
 	
@@ -75,4 +76,13 @@ public abstract class ParticleEffect {
 		return cost;
 	}
 
+	@Override
+	public String getDisplayName() {
+		return title;
+	}
+	
+	@Override
+	public String getIdentifier() {
+		return name;
+	}
 }

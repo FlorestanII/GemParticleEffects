@@ -16,13 +16,11 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class RainCloudEffect extends ParticleEffect {
-	private final Map<Player, Integer> schedulers;
+	private static final Map<Player, Integer> schedulers = new HashMap<Player, Integer>();
 	
 	public RainCloudEffect() {
 		super("raincloud", ChatColor.AQUA + "Rain Cloud", 1000);
-		
-		this.schedulers = new HashMap<Player, Integer>();
-		
+				
 		GemParticleEffects.getPlugin().getServer().getPluginManager().registerEvents(new Listener() {
 			
 			@EventHandler
@@ -167,12 +165,12 @@ public class RainCloudEffect extends ParticleEffect {
 
 	@Override
 	public void giveToPlayer(Player player) {
-		GemParticleEffects.getPlugin().getAbilityManager().giveAbilityTo(RainCloud.class, player, Duration.ofHours(1));
+		GemParticleEffects.getPlugin().getAbilityManager().giveAbilityTo(RainCloudEffect.class, player, Duration.ofHours(1));
 	}
 
 	@Override
 	public boolean hasEffect(Player player) {
-		return GemParticleEffects.getPlugin().getAbilityManager().hasAbility(RainCloud.class, player);
+		return GemParticleEffects.getPlugin().getAbilityManager().hasAbility(RainCloudEffect.class, player);
 	}
 
 }
