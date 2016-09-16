@@ -15,7 +15,6 @@ public class GemParticleEffects extends JavaPlugin{
 
 	private static GemParticleEffects instance;
 	private ViewManager viewManager;
-	private GemProvider gemApi;
 	
 	private AbilityManager abilityManager;
 	
@@ -33,8 +32,6 @@ public class GemParticleEffects extends JavaPlugin{
 		getCommand("particles").setExecutor(new ParticlesCommand());
 		
 		this.viewManager = new ViewManager(this);
-				
-		this.gemApi = getServer().getServicesManager().getRegistration(GemProvider.class).getProvider();
 		
 		this.abilityManager = getPlugin(GemExtras.class).getAbilityManager();
 		
@@ -59,7 +56,7 @@ public class GemParticleEffects extends JavaPlugin{
 	}
 	
 	public GemProvider getGemApi() {
-		return gemApi;
+		return getServer().getServicesManager().getRegistration(GemProvider.class).getProvider();
 	}
 
 	public AbilityManager getAbilityManager() {
