@@ -1,6 +1,5 @@
 package me.florestanii.gemparticles.effects;
 
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -132,15 +131,11 @@ public class FrostLordEffect extends ParticleEffect {
 		}
 	}
 
-
-
 	@Override
 	public void giveToPlayer(Player player) {
-		GemParticleEffects.getPlugin().getAbilityManager().giveAbilityTo(FrostLordEffect.class, player, Duration.ofHours(1));		
+		loopOnPlayer(player, -1);
 	}
-
-
-
+	
 	@Override
 	public boolean hasEffect(Player player) {
 		return GemParticleEffects.getPlugin().getAbilityManager().hasAbility(FrostLordEffect.class, player);

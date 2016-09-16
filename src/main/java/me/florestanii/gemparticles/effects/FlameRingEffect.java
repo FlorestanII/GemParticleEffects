@@ -1,6 +1,5 @@
 package me.florestanii.gemparticles.effects;
 
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -126,7 +125,7 @@ public class FlameRingEffect extends ParticleEffect {
 
 	@Override
 	public void giveToPlayer(Player player) {
-		GemParticleEffects.getPlugin().getAbilityManager().giveAbilityTo(FlameRingEffect.class, player, Duration.ofHours(1));		
+		loopOnPlayer(player, -1);
 	}
 
 	@Override

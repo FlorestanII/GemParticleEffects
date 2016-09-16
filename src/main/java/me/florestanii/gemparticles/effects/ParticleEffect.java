@@ -1,5 +1,6 @@
 package me.florestanii.gemparticles.effects;
 
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,13 +33,8 @@ public abstract class ParticleEffect implements Ability{
 	public abstract void stopEffect(Player player);
 	
 	public boolean buyEffect(Player player) {
-		if (hasEffect(player)) {
-			player.sendMessage(ChatColor.DARK_RED + "You have this effect already!");
-			return false;
-		}
-		
 		if (GemParticleEffects.getPlugin().getGemApi().removeGems(player, cost)) {
-			giveToPlayer(player);
+			GemParticleEffects.getPlugin().getAbilityManager().giveAbilityTo(getClass(), player, Duration.ofHours(1));
 			player.sendMessage(ChatColor.GREEN + "You bought " + title + ChatColor.GREEN + " for " + ChatColor.GOLD + cost + ChatColor.GREEN + " Gems");
 			return true;
 		} else {
@@ -84,5 +80,15 @@ public abstract class ParticleEffect implements Ability{
 	@Override
 	public String getIdentifier() {
 		return name;
+	}
+	
+	@Override
+	public void giveTo(Player player) {
+		giveToPlayer(player);
+	}
+	
+	@Override
+	public void removeFrom(Player player) {
+		stopEffect(player);
 	}
 }

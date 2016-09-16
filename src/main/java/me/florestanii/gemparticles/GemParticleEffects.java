@@ -65,4 +65,5 @@ public class GemParticleEffects extends JavaPlugin{
 	public AbilityManager getAbilityManager() {
 		return abilityManager;
 	}
+	
 }

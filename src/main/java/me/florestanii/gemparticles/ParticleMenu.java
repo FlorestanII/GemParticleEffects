@@ -2,7 +2,6 @@ package me.florestanii.gemparticles;
 
 import me.florestanii.gemparticles.effects.FlameRingEffect;
 import me.florestanii.gemparticles.effects.FrostLordEffect;
-import me.florestanii.gemparticles.effects.ParticleEffect;
 import me.florestanii.gemparticles.effects.RainCloudEffect;
 import net.md_5.bungee.api.ChatColor;
 
@@ -39,156 +38,62 @@ public class ParticleMenu extends SinglePageView{
 	
 	public GuiElement createFlameEffect() {
 		
-		if (flameEffect.hasEffect(player)) {
-			Button b = new Button(Material.BLAZE_POWDER, flameEffect.getTitle());
+		Button b = new Button(Material.BLAZE_POWDER, "Click to buy " + flameEffect.getTitle() + " for " + flameEffect.getCost() + " Gems for one more hour.");
 			
-			b.setOnClick(new ClickListener() {
-				
-				@Override
-				public void clicked(InventoryClickEvent event) {
-					
-					Player player = (Player) event.getWhoClicked();
-					
-					if (ParticleEffect.getCurrentEffect(player) == null) {
-						flameEffect.loopOnPlayer(player, -1);
-					} else {
-						flameEffect.stopEffect(player);
-						ParticleEffect.setCurrentEffect(player, null);
-					}
-					
-				}
-			});
+		b.setOnClick(new ClickListener() {
 			
-			return b;
-		} else {
-			
-			Button b = new Button(Material.BLAZE_POWDER, "Click to buy " + flameEffect.getTitle() + " for " + flameEffect.getCost() + " Gems for one hour.");
-			b.setIcon(Material.INK_SACK, (byte)8);
-			
-			b.setOnClick(new ClickListener() {
-				
-				@Override
-				public void clicked(InventoryClickEvent event) {
+			@Override
+			public void clicked(InventoryClickEvent event) {
+				Player player = (Player) event.getWhoClicked();
 					
-					Player player = (Player) event.getWhoClicked();
-					
-					if (flameEffect.buyEffect(player)) {
-						b.setIcon(Material.BLAZE_POWDER);
-						b.setTitle(flameEffect.getTitle());
-						flameEffect.loopOnPlayer(player, -1);
-					}
-					
-				}
-			});
+				flameEffect.buyEffect(player);
+				ParticleMenu.this.insertElement(53, createGemIcon());
+			}
+		});
 			
-			return b;
+		return b;
 			
-		}
-		
 	}
-
+	
 	public GuiElement createRainCloudEffect() {
 		
-		if (rainCloudEffect.hasEffect(player)) {
-			Button b = new Button(Material.INK_SACK, rainCloudEffect.getTitle());
-			b.setIcon(Material.INK_SACK, (byte)4);
-			b.setOnClick(new ClickListener() {
-				
-				@Override
-				public void clicked(InventoryClickEvent event) {
-					
-					Player player = (Player) event.getWhoClicked();
-					
-					if (ParticleEffect.getCurrentEffect(player) == null) {
-						rainCloudEffect.loopOnPlayer(player, -1);
-					} else {
-						rainCloudEffect.stopEffect(player);
-						ParticleEffect.setCurrentEffect(player, null);
-					}
-					
-				}
-			});
+		Button b = new Button(Material.INK_SACK, "Click to buy " + rainCloudEffect.getTitle() + " for " + rainCloudEffect.getCost() + " Gems for one more hour.");
+		b.setIcon(Material.INK_SACK, (byte)4);
 			
-			return b;
-		} else {
+		b.setOnClick(new ClickListener() {
 			
-			Button b = new Button(Material.INK_SACK, "Click to buy " + rainCloudEffect.getTitle() + " for " + rainCloudEffect.getCost() + " Gems for one hour.");
-			b.setIcon(Material.INK_SACK, (byte)4);
-			b.setIcon(Material.INK_SACK, (byte)8);
-			
-			b.setOnClick(new ClickListener() {
-				
-				@Override
-				public void clicked(InventoryClickEvent event) {
+			@Override
+			public void clicked(InventoryClickEvent event) {
+				Player player = (Player) event.getWhoClicked();
 					
-					Player player = (Player) event.getWhoClicked();
-					
-					if (rainCloudEffect.buyEffect(player)) {
-						b.setIcon(Material.INK_SACK, (byte)4);
-						b.setTitle(rainCloudEffect.getTitle());
-						rainCloudEffect.loopOnPlayer(player, -1);
-					}
-					
-				}
-			});
+				rainCloudEffect.buyEffect(player);
+				ParticleMenu.this.insertElement(53, createGemIcon());
+			}
+		});
 			
-			return b;
-			
-		}
+		return b;
 		
 	}
 	
 	public GuiElement createFrostLordEffect() {
 		
-		if (frostLordEffect.hasEffect(player)) {
-			Button b = new Button(Material.SNOW_BALL, frostLordEffect.getTitle());
+		Button b = new Button(Material.SNOW_BALL, "Click to buy " + frostLordEffect.getTitle() + " for " + frostLordEffect.getCost() + " Gems for one more hour.");
+		
+		b.setOnClick(new ClickListener() {
 			
-			b.setOnClick(new ClickListener() {
-				
-				@Override
-				public void clicked(InventoryClickEvent event) {
+			@Override
+			public void clicked(InventoryClickEvent event) {
+				Player player = (Player) event.getWhoClicked();
 					
-					Player player = (Player) event.getWhoClicked();
-					
-					if (ParticleEffect.getCurrentEffect(player) == null) {
-						frostLordEffect.loopOnPlayer(player, -1);
-					} else {
-						frostLordEffect.stopEffect(player);
-						ParticleEffect.setCurrentEffect(player, null);
-					}
-					
-				}
-			});
+				frostLordEffect.buyEffect(player);
+				ParticleMenu.this.insertElement(53, createGemIcon());
+			}
+		});
 			
-			return b;
-		} else {
-			
-			Button b = new Button(Material.SNOW_BALL, "Click to buy " + frostLordEffect.getTitle() + " for " + frostLordEffect.getCost() + " Gems for one hour.");
-			b.setIcon(Material.INK_SACK, (byte)8);
-			
-			b.setOnClick(new ClickListener() {
-				
-				@Override
-				public void clicked(InventoryClickEvent event) {
-					
-					Player player = (Player) event.getWhoClicked();
-					
-					if (frostLordEffect.buyEffect(player)) {
-						b.setIcon(Material.SNOW_BALL);
-						b.setTitle(frostLordEffect.getTitle());
-						frostLordEffect.loopOnPlayer(player, -1);
-					}
-					
-				}
-			});
-			
-			return b;
-			
-		}
+		return b;
 		
 	}
 
-	
 	public Player getPlayer() {
 		return player;
 	}
