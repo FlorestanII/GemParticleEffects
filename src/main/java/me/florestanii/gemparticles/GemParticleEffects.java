@@ -28,8 +28,6 @@ public class GemParticleEffects extends JavaPlugin{
 	
 	@Override
 	public void onEnable() {
-
-		getCommand("particles").setExecutor(new ParticlesCommand());
 		
 		this.viewManager = new ViewManager(this);
 		
@@ -38,6 +36,8 @@ public class GemParticleEffects extends JavaPlugin{
 		this.abilityManager.registerAbility(new RainCloudEffect());
 		this.abilityManager.registerAbility(new FlameRingEffect());
 		this.abilityManager.registerAbility(new FrostLordEffect());
+		
+		getPlugin(GemExtras.class).getGemShop().addItem(new ParticleMenu());
 		
 		super.onEnable();
 	}

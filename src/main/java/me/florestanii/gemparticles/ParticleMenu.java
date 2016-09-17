@@ -3,98 +3,63 @@ package me.florestanii.gemparticles;
 import me.florestanii.gemparticles.effects.FlameRingEffect;
 import me.florestanii.gemparticles.effects.FrostLordEffect;
 import me.florestanii.gemparticles.effects.RainCloudEffect;
-import net.md_5.bungee.api.ChatColor;
+import me.mickyjou.plugins.gems.gemextras.shop.Product;
+import me.mickyjou.plugins.gems.gemextras.shop.ProductGroup;
+import me.mickyjou.plugins.gems.gemextras.shop.SimpleProduct;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.ItemStack;
 
-import de.craften.plugins.mcguilib.Button;
-import de.craften.plugins.mcguilib.ClickListener;
-import de.craften.plugins.mcguilib.GuiElement;
-import de.craften.plugins.mcguilib.SinglePageView;
 
-public class ParticleMenu extends SinglePageView{
+public class ParticleMenu extends ProductGroup{
 
-	private final Player player;
 	
 	public static final FlameRingEffect flameEffect = new FlameRingEffect();
 	public static final FrostLordEffect frostLordEffect = new FrostLordEffect();
 	public static final RainCloudEffect rainCloudEffect = new RainCloudEffect();
 	
-	public ParticleMenu(Player player) {
-		super("§6§l★ §4§lParticle Menu §6§l ★", 54);
-		this.player = player;
+	public ParticleMenu() {
+		super("§6§l★ §4§lParticle Menu §6§l ★", new ItemStack(Material.BLAZE_ROD));
 		
-		insertElement(53, createGemIcon());
-		insertElement(12, createFlameEffect());
-		insertElement(14, createFrostLordEffect());
-		insertElement(21, createRainCloudEffect());
-	}
-	
-	public GuiElement createGemIcon() {
-		return new Button(Material.EMERALD, ChatColor.GREEN + "You have " + ChatColor.GOLD + GemParticleEffects.getPlugin().getGemApi().getGems(player) + ChatColor.GREEN + " Gems.");
-	}
-	
-	public GuiElement createFlameEffect() {
-		
-		Button b = new Button(Material.BLAZE_POWDER, "Click to buy " + flameEffect.getTitle() + " for " + flameEffect.getCost() + " Gems for one more hour.");
-			
-		b.setOnClick(new ClickListener() {
+		addItem(new SimpleProduct(Material.BLAZE_POWDER, flameEffect.getTitle(), 5) {
 			
 			@Override
-			public void clicked(InventoryClickEvent event) {
-				Player player = (Player) event.getWhoClicked();
-					
+			public void onBought(Player player) {
 				flameEffect.buyEffect(player);
-				ParticleMenu.this.insertElement(53, createGemIcon());
 			}
 		});
-			
-		return b;
-			
-	}
-	
-	public GuiElement createRainCloudEffect() {
 		
-		Button b = new Button(Material.INK_SACK, "Click to buy " + rainCloudEffect.getTitle() + " for " + rainCloudEffect.getCost() + " Gems for one more hour.");
-		b.setIcon(Material.INK_SACK, (byte)4);
-			
-		b.setOnClick(new ClickListener() {
+		addItem(new SimpleProduct(Material.SNOW_BALL, frostLordEffect.getTitle(), 5) {
 			
 			@Override
-			public void clicked(InventoryClickEvent event) {
-				Player player = (Player) event.getWhoClicked();
-					
-				rainCloudEffect.buyEffect(player);
-				ParticleMenu.this.insertElement(53, createGemIcon());
-			}
-		});
-			
-		return b;
-		
-	}
-	
-	public GuiElement createFrostLordEffect() {
-		
-		Button b = new Button(Material.SNOW_BALL, "Click to buy " + frostLordEffect.getTitle() + " for " + frostLordEffect.getCost() + " Gems for one more hour.");
-		
-		b.setOnClick(new ClickListener() {
-			
-			@Override
-			public void clicked(InventoryClickEvent event) {
-				Player player = (Player) event.getWhoClicked();
-					
+			public void onBought(Player player) {
 				frostLordEffect.buyEffect(player);
-				ParticleMenu.this.insertElement(53, createGemIcon());
 			}
 		});
+
+		addItem(new Product() {
 			
-		return b;
-		
+			@Override
+			public String getDisplayName() {
+				return rainCloudEffect.getTitle();
+			}
+			
+			@Override
+			public ItemStack createDisplayItem() {
+				return new ItemStack(Material.INK_SACK, 1, (byte)4 );
+			}
+			
+			@Override
+			public void onBought(Player player) {
+				rainCloudEffect.buyEffect(player);
+			}
+			
+			@Override
+			public int getCost() {
+				return 5;
+			}
+		});
 	}
 
-	public Player getPlayer() {
-		return player;
-	}
 }

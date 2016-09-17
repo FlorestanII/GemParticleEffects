@@ -4,8 +4,3 @@ version: VERSION
 main: me.florestanii.gemparticles.GemParticleEffects
 
 depend: [GemExtras, GemApi]
-
-commands:
-  particles:
-    usage: /<command>
-    description: GemParticleEffects main command
