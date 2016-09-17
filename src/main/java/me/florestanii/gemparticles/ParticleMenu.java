@@ -1,11 +1,14 @@
 package me.florestanii.gemparticles;
 
+import java.time.Duration;
+
 import me.florestanii.gemparticles.effects.FlameRingEffect;
 import me.florestanii.gemparticles.effects.FrostLordEffect;
 import me.florestanii.gemparticles.effects.RainCloudEffect;
 import me.mickyjou.plugins.gems.gemextras.shop.Product;
 import me.mickyjou.plugins.gems.gemextras.shop.ProductGroup;
 import me.mickyjou.plugins.gems.gemextras.shop.SimpleProduct;
+import net.md_5.bungee.api.ChatColor;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -22,19 +25,20 @@ public class ParticleMenu extends ProductGroup{
 	public ParticleMenu() {
 		super("§6§l★ §4§lParticle Menu §6§l ★", new ItemStack(Material.BLAZE_ROD));
 		
-		addItem(new SimpleProduct(Material.BLAZE_POWDER, flameEffect.getTitle(), 5) {
+		addItem(new SimpleProduct(Material.BLAZE_POWDER, flameEffect.getTitle() + ChatColor.WHITE + " (1 hour)", 5) {
 			
 			@Override
 			public void onBought(Player player) {
-				flameEffect.buyEffect(player);
+				GemParticleEffects.getPlugin().getAbilityManager().giveAbilityTo(FlameRingEffect.class, player, Duration.ofHours(1));
 			}
 		});
 		
-		addItem(new SimpleProduct(Material.SNOW_BALL, frostLordEffect.getTitle(), 5) {
+		addItem(new SimpleProduct(Material.SNOW_BALL, frostLordEffect.getTitle() + ChatColor.WHITE + " (1 hour)", 5) {
 			
 			@Override
 			public void onBought(Player player) {
-				frostLordEffect.buyEffect(player);
+				GemParticleEffects.getPlugin().getAbilityManager().giveAbilityTo(FrostLordEffect.class, player, Duration.ofHours(1));
+
 			}
 		});
 
@@ -42,7 +46,7 @@ public class ParticleMenu extends ProductGroup{
 			
 			@Override
 			public String getDisplayName() {
-				return rainCloudEffect.getTitle();
+				return rainCloudEffect.getTitle() + ChatColor.WHITE + " (1 hour)";
 			}
 			
 			@Override
@@ -52,7 +56,7 @@ public class ParticleMenu extends ProductGroup{
 			
 			@Override
 			public void onBought(Player player) {
-				rainCloudEffect.buyEffect(player);
+				GemParticleEffects.getPlugin().getAbilityManager().giveAbilityTo(RainCloudEffect.class, player, Duration.ofHours(1));
 			}
 			
 			@Override

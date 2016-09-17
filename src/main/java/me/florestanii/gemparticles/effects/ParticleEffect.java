@@ -1,12 +1,9 @@
 package me.florestanii.gemparticles.effects;
 
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
-import me.florestanii.gemparticles.GemParticleEffects;
 import me.mickyjou.plugins.gems.gemextras.abilitymanager.Ability;
-import net.md_5.bungee.api.ChatColor;
 
 import org.bukkit.entity.Player;
 
@@ -31,18 +28,6 @@ public abstract class ParticleEffect implements Ability{
 	public abstract void loopOnPlayer(Player player, int periode);
 	
 	public abstract void stopEffect(Player player);
-	
-	public boolean buyEffect(Player player) {
-		if (GemParticleEffects.getPlugin().getGemApi().removeGems(player, cost)) {
-			GemParticleEffects.getPlugin().getAbilityManager().giveAbilityTo(getClass(), player, Duration.ofHours(1));
-			player.sendMessage(ChatColor.GREEN + "You bought " + title + ChatColor.GREEN + " for " + ChatColor.GOLD + cost + ChatColor.GREEN + " Gems");
-			return true;
-		} else {
-			player.sendMessage("You don't have enough Gems to buy this.");
-			return false;
-		}
-		
-	}
 	
 	public abstract void giveToPlayer(Player player);
 	

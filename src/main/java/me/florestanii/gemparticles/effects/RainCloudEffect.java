@@ -51,38 +51,21 @@ public class RainCloudEffect extends ParticleEffect {
 				loc.add(x, y, z);
 				
 				loc.getWorld().spigot().playEffect(loc, Effect.SPLASH, 0, 0, 0, 0, 0, 0, 1, 100);
-				loc.getWorld().spigot().playEffect(loc, Effect.PARTICLE_SMOKE, 0, 0, 0, 0, 0, 0, 1, 100);
 				
 				loc.subtract(x, y, z);
 				
 				for (double phi = 0; phi < 2*Math.PI; phi += Math.PI/8) {
 					x = 0.3 * Math.cos(phi);
-					y = 2;
+					y = 2 - 0.15;
 					z = 0.3 * Math.sin(phi);
-					loc.add(x, y - 0.15, z);
+					loc.add(x, y, z);
 					
 					loc.getWorld().spigot().playEffect(loc, Effect.SPLASH, 0, 0, 0, 0, 0, 0, 1, 100);
 					
-					loc.add(0, 0.3, 0);
-					
-					loc.getWorld().spigot().playEffect(loc, Effect.PARTICLE_SMOKE, 0, 0, 0, 0, 0, 0, 1, 100);
-
-					loc.subtract(0, 0.15, 0);
-					
 					loc.subtract(x, y, z);
 
 				}
-				for (double phi = 0; phi < 2*Math.PI; phi += Math.PI/16) {
-					x = 0.5 * Math.cos(phi);
-					y = 2;
-					z = 0.5 * Math.sin(phi);
-					loc.add(x, y, z);
-					
-					loc.getWorld().spigot().playEffect(loc, Effect.PARTICLE_SMOKE, 0, 0, 0, 0, 0, 0, 1, 100);
-					
-					loc.subtract(x, y, z);
-
-				}
+				
 				this.cancel();
 			}
 		};
@@ -110,38 +93,21 @@ public class RainCloudEffect extends ParticleEffect {
 				loc.add(x, y, z);
 				
 				loc.getWorld().spigot().playEffect(loc, Effect.SPLASH, 0, 0, 0, 0, 0, 0, 1, 100);
-				loc.getWorld().spigot().playEffect(loc, Effect.PARTICLE_SMOKE, 0, 0, 0, 0, 0, 0, 1, 100);
 				
 				loc.subtract(x, y, z);
 				
 				for (double phi = 0; phi < 2*Math.PI; phi += Math.PI/8) {
 					x = 0.3 * Math.cos(phi);
-					y = 2;
+					y = 2 - 0.15;
 					z = 0.3 * Math.sin(phi);
-					loc.add(x, y - 0.15, z);
+					loc.add(x, y, z);
 					
 					loc.getWorld().spigot().playEffect(loc, Effect.SPLASH, 0, 0, 0, 0, 0, 0, 1, 100);
 					
-					loc.add(0, 0.3, 0);
-					
-					loc.getWorld().spigot().playEffect(loc, Effect.PARTICLE_SMOKE, 0, 0, 0, 0, 0, 0, 1, 100);
-
-					loc.subtract(0, 0.15, 0);
-					
 					loc.subtract(x, y, z);
 
 				}
-				for (double phi = 0; phi < 2*Math.PI; phi += Math.PI/16) {
-					x = 0.5 * Math.cos(phi);
-					y = 2;
-					z = 0.5 * Math.sin(phi);
-					loc.add(x, y, z);
-					
-					loc.getWorld().spigot().playEffect(loc, Effect.PARTICLE_SMOKE, 0, 0, 0, 0, 0, 0, 1, 100);
-					
-					loc.subtract(x, y, z);
-
-				}
+				
 			}
 		};
 		
