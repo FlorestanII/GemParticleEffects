@@ -1,11 +1,8 @@
 package me.florestanii.gemparticles.effects;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import me.florestanii.gemparticles.GemParticleEffects;
+import me.mickyjou.plugins.gems.gemextras.abilitymanager.AbilityManager;
 import net.md_5.bungee.api.ChatColor;
-
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -13,6 +10,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 public class RainCloudEffect extends ParticleEffect {
 	private static final Map<Player, Integer> schedulers = new HashMap<Player, Integer>();
@@ -135,7 +136,8 @@ public class RainCloudEffect extends ParticleEffect {
 
 	@Override
 	public boolean hasEffect(Player player) {
-		return GemParticleEffects.getPlugin().getAbilityManager().hasAbility(RainCloudEffect.class, player);
+		Optional<AbilityManager> abilityManager = AbilityManager.getInstance();
+		return abilityManager.isPresent() && abilityManager.get().hasAbility(RainCloudEffect.class, player);
 	}
 
 }

@@ -62,7 +62,7 @@
 		</dependency>
 		<dependency>
             <groupId>de.mickyjou.plugins</groupId>
-			<artifactId>GemExtras</artifactId>
+			<artifactId>gemextras-api</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
